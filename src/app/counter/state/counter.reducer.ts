@@ -1,6 +1,7 @@
 import { state } from '@angular/animations';
 import { createReducer, on } from '@ngrx/store';
 import {
+  changeChannelName,
   customIncrement,
   decrement,
   increment,
@@ -21,7 +22,11 @@ const _counterReducer = createReducer(
     return { ...state, counter: 0 };
   }),
   on(customIncrement, (state, action) => {
+    console.log(action);
     return { ...state, counter: state.counter + action.value };
+  }),
+  on(changeChannelName, (state) => {
+    return { ...state, channelName: 'Lunch Time Gaming'}
   })
 );
 
