@@ -1,17 +1,18 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-counter-output',
   templateUrl: './counter-output.component.html',
-  styleUrls: ['./counter-output.component.css']
+  styleUrls: ['./counter-output.component.css'],
 })
 export class CounterOutputComponent implements OnInit {
-
-  @Input() counter = 0;
-
-  constructor() { }
+  counter = 0;
+  constructor(private store: Store<{ counter: { counter: number } }>) {}
 
   ngOnInit(): void {
+    this.store.select('counter').subscribe((data) => {
+      this.counter = data.counter;
+    });
   }
-
 }
