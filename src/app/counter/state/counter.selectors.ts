@@ -2,8 +2,16 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { CounterState } from './counter.state';
 
-const getCounterState = createFeatureSelector<CounterState>('counter');
+export const COUNTER_STATE_NAME = 'counter';
 
-export const getCounter = createSelector(getCounterState, (state) => state.counter);
+const getCounterState = createFeatureSelector<CounterState>(COUNTER_STATE_NAME);
 
-export const getChannelName = createSelector(getCounterState, (state) => state.channelName);
+export const getCounter = createSelector(
+  getCounterState,
+  (state) => state.counter
+);
+
+export const getChannelName = createSelector(
+  getCounterState,
+  (state) => state.channelName
+);
